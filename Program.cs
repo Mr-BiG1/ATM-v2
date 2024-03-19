@@ -12,6 +12,7 @@ namespace Atm
     {
         static void Main(string[] args)
         {
+            // accoount details && other var for the program
             int[] example_Account_Number = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 9 };
             int[] exapmle_Acount_Password = { 2, 2, 4, 4 };
             int[] user_Entered_Card_Number = new int[10];
@@ -20,7 +21,7 @@ namespace Atm
             int user_Money_Need;
             bool exit_program = false;
             int user_Selected_Option;
-            // ATM 
+            // ATM main menu 
             do
             {
                 try
@@ -37,6 +38,7 @@ namespace Atm
                     Console.WriteLine();
                     Console.WriteLine("5. Exit");
                     Console.WriteLine();
+                    // user selection area 
                     user_Selected_Option = Convert.ToInt32(Console.ReadLine());
                     switch (user_Selected_Option)
                     {
@@ -53,7 +55,7 @@ namespace Atm
                                 Console.WriteLine("Card Number is not entered");
                                 Atm_Card_Number(user_Entered_Card_Number);
                             }
-                            Password_Compair(user_Entered_Card_Number, user_Entered_Password);
+                            Password_Compair(user_Entered_Card_Number, user_Entered_Password,exapmle_Acount_Password,example_Account_Number);
                             Console.WriteLine("Enter the amount to withdraw");
                             user_Money_Need = Convert.ToInt32(Console.ReadLine());
                             account_Balance = account_Balance - user_Money_Need;
@@ -125,14 +127,26 @@ namespace Atm
             }
         }
         //to check the password and accound number are same 
-        static void Password_Compair(int[] account_Number_Compair, int[] pasword_Compair)
+        static void Password_Compair(int[] account_Number_Compair, int[] pasword_Compair, int[] user_Enterd_Password, int[] user_Entered_Account_Number)
         {
-            for (int i = 0; i < account_Number_Compair.Length ; i++)
+            try
             {
-                if (account_Number_Compair[i] != pasword_Compair[i])
+                for (int i = 0; i < account_Number_Compair.Length; i++)
                 {
-                    Console.WriteLine("Hellow ");
+                    if (account_Number_Compair[i] == user_Entered_Account_Number[i] && pasword_Compair[i] == user_Enterd_Password[i])
+                    {
+                        
+                    }
+                    else
+                    {
+                        Console.WriteLine();
+                        Console.WriteLine("Account Number Not FOund!!");
+                    }
                 }
+            }
+            catch (Exception Error)
+            {
+                Console.WriteLine(Error.Message);
             }
         }
     }
