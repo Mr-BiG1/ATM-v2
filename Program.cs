@@ -12,6 +12,8 @@ namespace Atm
     {
         static void Main(string[] args)
         {
+            int[] example_Account_Number = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 9 };
+            int[] exapmle_Acount_Password = { 2, 2, 4, 4 };
             int[] user_Entered_Card_Number = new int[10];
             int[] user_Entered_Password = new int[4];
             int account_Balance = 1000;
@@ -38,8 +40,10 @@ namespace Atm
                     user_Selected_Option = Convert.ToInt32(Console.ReadLine());
                     switch (user_Selected_Option)
                     {
+                        // withdraw money from the account.
                         case 1:
                             Atm_Card_Number(user_Entered_Card_Number);
+                            // if is used to make sure user have entered a valied card number.
                             if (user_Entered_Card_Number.Length != 0)
                             {
                                 Passsword_Checker(user_Entered_Password);
@@ -49,13 +53,15 @@ namespace Atm
                                 Console.WriteLine("Card Number is not entered");
                                 Atm_Card_Number(user_Entered_Card_Number);
                             }
+                            Password_Compair(user_Entered_Card_Number, user_Entered_Password);
                             Console.WriteLine("Enter the amount to withdraw");
                             user_Money_Need = Convert.ToInt32(Console.ReadLine());
                             account_Balance = account_Balance - user_Money_Need;
                             Console.WriteLine("Processing");
-                            Thread.Sleep(100);
+                            Thread.Sleep(200);
                             Console.WriteLine("Collect Money");
                             Console.WriteLine($"FInal Balance: ${account_Balance}");
+                            Console.ReadKey();
                             break;
                         case 2:
                             Console.WriteLine("Not FIxed");
@@ -81,10 +87,9 @@ namespace Atm
             }
         }
 
-
+        // Function is for get card data from the user to conform the account
         static void Atm_Card_Number(int[] get_Card_Number)
         {
-            // Function is for get card data from the user to conform the account 
             Console.WriteLine();
             try
             {
@@ -93,6 +98,7 @@ namespace Atm
                 {
                     get_Card_Number[i] = Convert.ToInt32(Console.ReadLine());
                 }
+                Console.Clear();
             }
             catch (Exception Error)
             {
@@ -100,22 +106,33 @@ namespace Atm
             }
         }
 
-
+        // function to check and get password.
         static void Passsword_Checker(int[] password_Checker)
         {
             try
             {
-                // to check password 
                 Console.WriteLine("Enter your Four digit pin code");
                 for (int i = 0;i < password_Checker.Length; i++)
                 {
                     password_Checker[i] = Convert.ToInt32(Console.ReadLine());
                 }
                 Console.WriteLine();
+                Console.Clear();
             }
             catch (Exception Error)
             {
                 Console.WriteLine(Error.Message);
+            }
+        }
+        //to check the password and accound number are same 
+        static void Password_Compair(int[] account_Number_Compair, int[] pasword_Compair)
+        {
+            for (int i = 0; i < account_Number_Compair.Length ; i++)
+            {
+                if (account_Number_Compair[i] != pasword_Compair[i])
+                {
+                    Console.WriteLine("Hellow ");
+                }
             }
         }
     }
