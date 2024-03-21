@@ -12,6 +12,7 @@ namespace Atm
     {
         static void Main(string[] args)
         {
+            // addd
             // accoount details && other var for the program
             int[] example_Account_Number = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 9 };
             int[] exapmle_Acount_Password = { 2, 2, 4, 4 };
@@ -19,7 +20,7 @@ namespace Atm
             int[] user_Entered_Password = new int[4];
             int account_Balance = 1000;
             int user_Money_Need;
-            bool exit_program = false;
+            bool exit_program = true;
             int user_Selected_Option;
             // ATM main menu 
             do
@@ -75,14 +76,14 @@ namespace Atm
                             Console.WriteLine("Not FIxed");
                             break;
                         case 5:
-                            exit_program = true;
+                            exit_program = false;
                             break;
                     }
                 }catch (Exception Error)
                 {
                     Console.WriteLine(Error.Message);
                 }
-            } while (exit_program == false);
+            } while (exit_program);
             {
                 Console.WriteLine("thank You");
                 Console.ReadKey();
